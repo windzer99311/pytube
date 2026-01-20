@@ -23,4 +23,4 @@ def get_stream(url: str):
 
     r = requests.post(api, headers=headers, data=data)
     print(r.status_code)
-    print(r.text)
+    return r.text
