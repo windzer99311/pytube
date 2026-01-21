@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import requests
+import uvicorn
 
 app = FastAPI()
 
@@ -25,3 +26,6 @@ def get_stream(url: str):
     r = requests.post(api, headers=headers, data=data, timeout=15)
 
     return r.text
+if __name__ == "__main__":
+    uvicorn.run(app)
+
