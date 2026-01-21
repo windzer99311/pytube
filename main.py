@@ -25,7 +25,12 @@ def get_stream(url: str):
 
     r = requests.post(api, headers=headers, data=data, timeout=15)
 
-    return r.text
+    return {
+    "status_code": r.status_code,
+    "headers": dict(r.headers),
+    "body": r.text
+}
+
 if __name__ == "__main__":
     uvicorn.run(app)
 
