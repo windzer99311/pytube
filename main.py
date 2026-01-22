@@ -1,6 +1,6 @@
+from pytubefix import YouTube
 def main(context):
     # Log some info to the Appwrite console
-    from pytubefix import YouTube
     url="https://www.youtube.com/watch?v=Jtauh8GcxBY"
     yt=YouTube(url).streams.first().url
     print(yt)
