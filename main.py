@@ -1,4 +1,4 @@
-from pytubefix import YouTube
+import yt_dlp
 def main(context):
     # Log some info to the Appwrite console
     link="https://www.youtube.com/watch?v=Jtauh8GcxBY"
