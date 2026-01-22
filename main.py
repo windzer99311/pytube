@@ -1,36 +1,18 @@
-from fastapi import FastAPI
-import requests
-import uvicorn
+def main(context):
+    # Log some info to the Appwrite console
+    context.log("Hello, Appwrite! The function has started.")
 
-app = FastAPI()
+    # Check if the request is a GET or POST
+    method = context.req.method
+    
+    # Get data from the request body (if provided)
+    payload = context.req.body or {}
 
-@app.get("/search")
-def get_stream(url: str):
-    api = "https://api.vidssave.com/api/contentsite_api/media/parse"
-
-    headers = {
-        "accept": "*/*",
-        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "origin": "https://vidssave.com",
-        "referer": "https://vidssave.com/",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-    }
-
-    data = {
-        "auth": "20250901majwlqo",
-        "domain": "api-ak.vidssave.com",
-        "origin": "source",
-        "link": url
-    }
-
-    r = requests.post(api, headers=headers, data=data, timeout=15)
-
-    return {
-    "status_code": r.status_code,
-    "headers": dict(r.headers),
-    "body": r.text
-}
-
-if __name__ == "__main__":
-    uvicorn.run(app)
-
+    # Logic: Return a simple greeting
+    name = payload.get("name", "Guest")
+    
+    return context.res.json({
+        "message": f"Hello {name}!",
+        "method": method,
+        "status": "success"
+    })
